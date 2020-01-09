@@ -5,37 +5,24 @@
     <meta charset="utf-8" />
 </head>
 <body>
-<h1>Top画面</h1>
-<a href="/edit">編集画面へ</a>
-<form method="post" action="/add">
-    TODOを追加：
-    <input type="text" name="text1" th:value="${text1_value}"/>
-    <input type="submit" value="追加"/>
-</form>
+<h1>検索画面</h1>
 <form method="post" action="/search">
     検索：
-    <input type="text" name="text1" th:value="${text1_value}"/>
+    <input type="text" name="text1" th:value="${queryText}"/>
     <input type="submit" value="検索"/>
-</form>
-<form method="post" action="/removeAll">
-    <input type="submit" value="全て削除する"/>
 </form>
 <table>
     <tr>
         <th bgcolor="#EE0000"><font color="#FFFFFF">番号</font></th>
         <th bgcolor="#EE0000" width="300"><font color="#FFFFFF">内容</font></th>
-        <!--<th bgcolor="#EE0000" width="100"><font color="#FFFFFF">done</font></th>-->
         <th bgcolor="#EE0000" width="100"><font color="#FFFFFF">チェック</font></th>
     </tr>
 
-    <tr th:each="todo : ${todoList}" th:object="${todo}">
+    <tr method="post" th:each="todo : ${resultsList}" th:object="${todo}">
         <td th:text="*{id}"></td>
         <td th:text="*{content}"></td>
-        <!--<td>-->
-            <!--<input type="checkbox" name="checkbox1" th:checked="*{done} ? 'checked'">-->
-        <!--</td>-->
         <td>
-            <form th:action="@{/switch_done/} + *{id}">
+            <form th:action="@{/switch_done2/} + *{id}">
                 <input type="checkbox" name="todo_checkbox" value="*{done}" onclick="submit();" th:checked="*{done} ? 'checked'">
             </form>
         </td>
@@ -44,17 +31,9 @@
     <tr th:each="emp : ${emplist}" th:object="${emp}">
         <td th:text="*{id}"></td>
         <td th:text="*{empname}"></td>
-        <!--<td>-->
-            <!--<input type="checkbox"/>-->
-        <!--</td>-->
         <td>
             <input type="checkbox" name="my-checkbox" th:checked="${isChecked} ? 'checked'">
         </td>
-        <!--<td>-->
-            <!--<form method="post" action="/remove">-->
-                <!--<input type="submit" value="削除"/>-->
-            <!--</form>-->
-        <!--</td>-->
     </tr>
 </table>
 </body>

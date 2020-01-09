@@ -14,10 +14,8 @@ public class Todo {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="content")
     private String content;
 
-    @Column(name="done")
     private int done;
 
     public Long getId() {
@@ -26,12 +24,14 @@ public class Todo {
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getContent() {
-        return content;
+        return this.content;
     }
     public void setContent(String content) {
         this.content = content;
     }
+
     public boolean getDone() {
         if (done == 0) return false;
         else return true;
