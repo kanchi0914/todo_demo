@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Springboot</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+<h1>Top画面</h1>
+<a href="/edit">編集画面へ</a>
+<form method="post" action="/add">
+    TODOを追加：
+    <input type="text" name="text1" th:value="${text1_value}"/>
+    <input type="submit" value="追加"/>
+</form>
+<form method="post" action="/search">
+    検索：
+    <input type="text" name="text1" th:value="${text1_value}"/>
+    <input type="submit" value="検索"/>
+</form>
+<form method="post" action="/removeAll">
+    <input type="submit" value="全て削除する"/>
+</form>
+<table>
+    <tr>
+        <th bgcolor="#EE0000"><font color="#FFFFFF">番号</font></th>
+        <th bgcolor="#EE0000" width="300"><font color="#FFFFFF">内容</font></th>
+        <th bgcolor="#EE0000" width="100"><font color="#FFFFFF">チェック</font></th>
+    </tr>
+
+    <tr th:each="todo : ${todoList}" th:object="${todo}">
+        <td th:text="*{id}"></td>
+        <td th:text="*{content}"></td>
+        <!--<td>-->
+        <!--<input type="checkbox"/>-->
+        <!--</td>-->
+        <td>
+            <input type="checkbox">
+        </td>
+        <!--<td>-->
+        <!--<form method="post" action="/remove">-->
+        <!--<input type="submit" value="削除"/>-->
+        <!--</form>-->
+        <!--</td>-->
+    </tr>
+    <!---->
+    <!--<tr th:each="emp : ${emplist}" th:object="${emp}">-->
+        <!--<td th:text="*{id}"></td>-->
+        <!--<td th:text="*{empname}"></td>-->
+        <!--&lt;!&ndash;<td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<input type="checkbox"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;</td>&ndash;&gt;-->
+        <!--<td>-->
+            <!--<input type="checkbox" name="my-checkbox" th:checked="${isChecked} ? 'checked'">-->
+        <!--</td>-->
+        <!--&lt;!&ndash;<td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<form method="post" action="/remove">&ndash;&gt;-->
+                <!--&lt;!&ndash;<input type="submit" value="削除"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;</form>&ndash;&gt;-->
+        <!--&lt;!&ndash;</td>&ndash;&gt;-->
+    <!--</tr>-->
+</table>
+</body>
+</html>
